@@ -18,12 +18,21 @@ app.use(bodyParser.json()); // Habilita parsing de JSON no body das requisiçõe
 app.use(bodyParser.urlencoded({ extended: true })); // Habilita parsing de dados URL-encoded (formulários)
 
 // Configuração de rotas
+console.log('Rotas do administrador configuradas com sucesso!');
 app.use('/admin', adminRoutes); // Todas as rotas de `admin.js` estarão disponíveis com o prefixo `/admin`
+
+console.log('Rotas do responsável configuradas com sucesso!');
 app.use('/responsavel', responsavelRoutes); // Todas as rotas de `responsavel.js` estarão disponíveis com o prefixo `/responsavel`
 
 // Rota padrão para teste de conexão
 app.get('/', (req, res) => {
     res.json({ mensagem: 'Conexão com o backend funcionando!' });
+});
+
+// Middleware global para erros
+app.use((err, req, res, next) => {
+    console.error('Erro no servidor:', err);
+    res.status(500).json({ mensagem: 'Erro interno no servidor.' });
 });
 
 // Exportar o app para ser usado no `server.js`

@@ -1,0 +1,6 @@
+{
+  "appId": "com.cnsg.app",
+  "appName": "app_agendamento",
+  "webDir": "client/build",
+  "bundledWebRuntime": false
+}
